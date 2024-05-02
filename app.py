@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 from matplotlib.backends.backend_agg import FigureCanvasAgg
-import io
-import base64
 import AnalysisClusterAndTrend as analysis_trend
 import ConstructionAndEvaluationSarima as consteval_sarima
+import io
+import base64
 
 app = Flask(__name__)
 

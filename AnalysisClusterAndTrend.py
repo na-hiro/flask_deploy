@@ -104,7 +104,7 @@ class AnalysisClusterAndTrend():
         pred = cls.fit_predict(self.df_clustering_sc)
         
         self.centers = cls.cluster_centers_
-        labels = cls.labels_
+        #labels = cls.labels_
         self.df_clustering["cluster"] = pred
 
     #トレンド解析

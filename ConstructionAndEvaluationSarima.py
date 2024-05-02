@@ -148,23 +148,26 @@ class ConstructionAndEvaluationSarima():
 
         #モデルの構築
         SARIMA_stock=sm.tsa.statespace.SARIMAX(self.df_stock_train,order=(prm_1[0],prm_1[1],prm_1[2]),seasonal_order=(prm_2[0],prm_2[1],prm_2[2],prm_2[3])).fit()
-        print(SARIMA_stock.summary())
+        #print(SARIMA_stock.summary())
         SARIMA_stock.plot_diagnostics(lags=20, figsize=(16,16))
         self.stock_train_pred=SARIMA_stock.predict(self.train_st, self.train_end)
         self.stock_test_pred=SARIMA_stock.predict(self.test_st, self.test_end)
 
+        """
         plt.figure()
         plt.plot(self.stock_train_pred)
         plt.plot(self.stock_test_pred)
         plt.show()
+        """
 
     def evaluate_predict(self):
         #元の時系列データと予測データの比較
         fig = plt.figure(figsize=(12, 6))
+
         if self.flg_web:
-            plt.title(f"Results({self.ticker})")
+            fig.suptitle(f"Results({self.ticker})")
         else:
-            plt.title(f"Results({self.company_name},{self.ticker})", fontname="MS Gothic")
+            fig.suptitle(f"Results({self.company_name},{self.ticker})", fontname="MS Gothic")
 
         plt.plot(self.df_stock,color="blue",label="original")
         plt.plot(self.stock_train_pred,color="r", label="train predict")
@@ -204,6 +207,7 @@ class ConstructionAndEvaluationSarima():
         fig, rmse, mae, mape = self.evaluate_predict()
 
         return fig, rmse, mae, mape
+
 if __name__ == "__main__":
     test = ConstructionAndEvaluationSarima(False)
     test.get_stockdata()
