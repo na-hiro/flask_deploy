@@ -12,6 +12,9 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_percentage_error
 import matplotlib
+
+#fontprop = FontProperties(fname='./fonts/NotoSansCJKjp-Medium.otf')
+
 #matplotlib.use('Agg')
 
 class ConstructionAndEvaluationSarima():
@@ -158,13 +161,17 @@ class ConstructionAndEvaluationSarima():
     def evaluate_predict(self):
         #元の時系列データと予測データの比較
         fig = plt.figure(figsize=(12, 6))
-        fig.suptitle(f"Results({self.company_name},{self.ticker})", fontname="MS Gothic")
+        if self.flg_web:
+            plt.title(f"Results({self.ticker})")
+        else:
+            plt.title(f"Results({self.company_name},{self.ticker})", fontname="MS Gothic")
+
         plt.plot(self.df_stock,color="blue",label="original")
         plt.plot(self.stock_train_pred,color="r", label="train predict")
         plt.plot(self.stock_test_pred,color="green", label="test predict")
         plt.legend()       
         plt.show()
-              
+
         # 精度指標（テストデータ）
         list_stock_test = self.df_stock_test.to_numpy().tolist()
         list_stock_test = list(itertools.chain.from_iterable(list_stock_test))
@@ -197,7 +204,6 @@ class ConstructionAndEvaluationSarima():
         fig, rmse, mae, mape = self.evaluate_predict()
 
         return fig, rmse, mae, mape
-
 if __name__ == "__main__":
     test = ConstructionAndEvaluationSarima(False)
     test.get_stockdata()

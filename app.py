@@ -50,13 +50,18 @@ def predict():
 
         predict_handler = consteval_sarima.ConstructionAndEvaluationSarima(True)
         fig, rmse, mae, mape = predict_handler.main(ticker) 
+        
     
         return render_template(
             "predict_output.html",
             plot=draw(fig), 
             title='指定された証券コードの株価を予測', 
-            message='結果の表示', 
-            ticker_code=ticker, rmse = rmse, mae = mae, mape = mape
+            message='結果の表示',
+            ticker_code=ticker,
+            rmse = rmse,
+            mae = mae,
+            mape = mape,
+            company_name = predict_handler.company_name
             )
 
 if __name__ == "__main__":
