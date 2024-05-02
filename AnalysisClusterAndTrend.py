@@ -142,7 +142,7 @@ class AnalysisClusterAndTrend():
             print("Nikkei500が所属するクラスタ: ", self.df_clustering["cluster"][0])
             
             while True:
-                n = input('input cluster number: ')
+                n = input('input cluster number(終了の場合は、xをタイプ): ')
                 print(f'your input: {n}')
                 if n.isdecimal() == True:
                     for i in self.df_clustering["cluster"].unique():
