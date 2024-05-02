@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+ 
+{% block title %}
+ 株価予測結果ページ
+{% endblock %}
+ 
+{% block headline %}
+{{ title }}
+{% endblock %}
+ 
+{% block content %}
+<font size="5">
+  <b><p>{{ message }}</p></b>
+</font>
+<form method="post" action="/cluster">
+  <br><font size="5">◆業種別指数のトレンド解析</font></br>
+  <ul>
+    <img src="{{plot}}" width="80%" />
+   <li>
+    <p>cluster0: {{ cluster_0 }}</p>
+   </li>
+   <li>
+    <p>cluster1: {{ cluster_1 }}</p>
+   </li>
+   <li>
+    <p>cluster2: {{ cluster_2 }}</p>
+   </li>
+   <li>
+    <p>cluster3: {{ cluster_3 }}</p>
+   </li>
+   <li>
+    <p>cluster4: {{ cluster_4 }}</p>
+   </li>
+  </ul>
+  <br><font size="5">◆PCAによる次元圧縮結果</font></br>
+   <img src="{{plot_pca}}" width="80%" />
+</form>
+{% endblock %}
+ 
+{% block footer %}
+copyright 2024 Hironori_Nagai
+{% endblock %}

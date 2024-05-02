@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+ 
+{% block title %}
+ 株価予測結果ページ
+{% endblock %}
+ 
+{% block headline %}
+{{ title }}
+{% endblock %}
+ 
+{% block content %}
+<font size="5">
+<b><p>{{ message }}</p></b>
+</font>
+<form method="post" action="/predict">
+  <br><font size="5">◆株価予測結果</font></br>
+  <ul>
+    <li>
+      <p>証券コード：<input type="number" name="ticker_code" value="{{ ticker_code }}"  min="0"></p>
+    </li>
+  </ul>
+    <img src="{{plot}}" width="80%" />
+    <br><font size="5">◆精度評価</font></br>
+    <ul>
+    <li>
+      <p>RMSE: {{ rmse }}</p>
+    </li>
+    <li>
+      <p>MAE:  {{ mae }}</p>
+    </li>
+    <li>
+      <p>MAPE: {{ mape }}</p>
+    </li>
+    </ul>
+  <input type="submit">
+</form>
+{% endblock %}
+ 
+{% block footer %}
+copyright 2024 Hironori_Nagai
+{% endblock %}
